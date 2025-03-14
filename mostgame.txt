@@ -1,0 +1,85 @@
+
+    <!-- ***** Most Popular Start ***** -->
+    <div class="most-popular">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="heading-section">
+                    <h4><em>Les plus populaires</em> en ce moment</h4>
+                </div>
+                <div class="row">
+                    @foreach($jeuxPopulaires as $jeu)
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="item">
+                                @if($jeu->images->isNotEmpty())
+                                    <img src="{{ $jeu->images->first()->url }}" alt="{{ $jeu->titre }}">
+                                @else
+                                    <img src="{{ asset('assets/images/default-game.jpg') }}" alt="{{ $jeu->titre }}">
+                                @endif
+                                <h4>{{ $jeu->titre }}<br><span>{{ $jeu->categorie }}</span></h4>
+                                <ul>
+                                    <li><i class="fa fa-star"></i> {{ number_format($jeu->averageRating, 1) }}</li>
+                                    <li><i class="fa fa-download"></i> {{ $jeu->download_count ?? 0 }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    @endforeach
+                    <div class="col-lg-12">
+                        <div class="main-button">
+                            <a href="{{ route('jeux.browse') }}">Découvrir les plus populaires</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Most Popular End ***** -->
+
+<!-- ***** Gaming Library Start ***** -->
+<div class="gaming-library">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="heading-section">
+                <h4><em>Votre bibliothèque</em> de jeux</h4>
+            </div>
+            @if(Auth::check())
+                @if($bibliotheque->isNotEmpty())
+                    @foreach($bibliotheque as $jeu)
+                        <div class="item">
+                            <ul>
+                                <li>
+                                    @if($jeu->images->isNotEmpty())
+                                        <img src="{{ $jeu->images->first()->url }}" alt="{{ $jeu->titre }}" class="templatemo-item">
+                                    @else
+                                        <img src="{{ asset('assets/images/default-game.jpg') }}" alt="{{ $jeu->titre }}" class="templatemo-item">
+                                    @endif
+                                </li>
+                                <li><h4>{{ $jeu->titre }}</h4><span>{{ $jeu->categorie }}</span></li>
+                                <li><h4>Date d'ajout</h4><span>{{ $jeu->pivot->created_at->format('Y-m-d') }}</span></li>
+                                <li><h4>Heures jouées</h4><span>{{ $jeu->pivot->heures_jouees ?? 0 }}</span></li>
+                                <li><h4>Statut</h4><span>Téléchargé</span></li>
+                                <li>
+                                    <div class="main-border-button">
+                                        <a href="#">Jouer</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    @endforeach
+                @else
+                    <p>Votre bibliothèque est vide. Ajoutez des jeux pour commencer à jouer.</p>
+                @endif
+            @else
+                <p>Veuillez vous connecter pour voir votre bibliothèque de jeux.</p>
+            @endif
+        </div>
+        @if(Auth::check())
+            <div class="col-lg-12">
+                <div class="main-button">
+                    <a href="{{ route('jeux.library') }}">Voir votre bibliothèque</a>
+                </div>
+            </div>
+        @endif
+    </div>
+</div>
+<!-- ***** Gaming Library End ***** -->

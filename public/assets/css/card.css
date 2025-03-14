@@ -1,0 +1,80 @@
+.pagination {
+    display: flex;
+    justify-content: center; /* Centrer la pagination horizontalement */
+    padding-left: 0;
+    list-style: none;
+    border-radius: 0.25rem;
+}
+
+.pagination li {
+    margin: 0 5px; /* Ajouter un peu d'espacement entre les boutons */
+}
+
+.pagination .page-link {
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0.75rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out; /* Transition douce pour les interactions */
+}
+
+.pagination .page-link:hover {
+    z-index: 2;
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+.pagination .active .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.card {
+    transition: transform 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #333; /* Darker background */
+    color: #f8f9fa; /* Light text color for better contrast */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly larger scale on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow for depth */
+}
+
+.description-container {
+    display: none; /* Initially hide details */
+}
+
+.card:hover .description-container {
+    display: block; /* Show details on hover */
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover; /* Better handling of image fit */
+}
+
+.card-title {
+    color: #fff; /* Ensure title is visible */
+}
+
+.card-text {
+    color: #ccc; /* Lighter text for categories */
+}
+
+.btn-primary {
+    background-color: #0069d9; /* Bootstrap primary color */
+    border-color: #0062cc; /* Slightly darker border */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker on hover */
+    border-color: #004085; /* Match border to hover state */
+}
+.btn-card {
+    width: 100px; /* Ajustez la largeur des boutons */
+    height: 100px;
+    text-align: center; /* Centre le texte */
+}
